@@ -31,5 +31,5 @@ npx tsc --init
 
 ### Add node-fetch + type declarations
 
-`npm add node-fetch`
+`npm add node-fetch`  
 `npm install @types/node-fetch`
