@@ -28,3 +28,7 @@ npx tsc --init
 ### Watch mode compiler
 
 `npx tsc --watch`
+
+### Add node-fetch type declarations
+
+`npm install @types/node-fetch`
