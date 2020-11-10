@@ -40,12 +40,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var node_fetch_1 = __importDefault(require("node-fetch"));
+/*
+is:
+Using the type predicate "obj is ApiResult<unknown>"
+(instead of just use boolean for the return type)
+if the function returns true, the TypeScript-compiler will narrow the type to ApiResult<>
+in any block guarded by a call to the function.
+*/
+/*
+unknown:
+(is like any type)
+This is useful for APIs that want to signal “this can be any value, so you must perform some type of checking before you use it”. This forces users to safely introspect returned values.
+*/
 function isApiResult(obj) {
     return 'data' in obj;
 }
 function isUser(obj) {
     return obj && typeof obj.id === 'number' && typeof obj.email === 'string';
 }
+/*
+asserts:
+asserts condition says that whatever gets passed into the condition parameter
+must be true if the assert returns (because otherwise it would throw an error). That means that for the rest of the scope, that condition must be truthy.
+*/
 function assertUserApiResult(obj) {
     if (!isApiResult(obj) && isUser(obj.data)) {
         throw new Error('not a valid API result');
