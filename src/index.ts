@@ -43,6 +43,7 @@ function assertUserApiResult(obj: any): asserts obj is ApiResult<User> {
   }
 }
 
+//ASYNC
 async function fetchUser(id: number): Promise<ApiResult<User>> {
   const response = await fetch(`https://reqres.in/api/users/${id}`)
   const json: unknown = await response.json()
@@ -50,4 +51,16 @@ async function fetchUser(id: number): Promise<ApiResult<User>> {
   return json
 }
 
+//PROMISE CHAIN
+function fetchUser2(id: number): Promise<ApiResult<User>> {
+  return fetch(`https://reqres.in/api/users/${id}`)
+    .then((response) => response.json())
+    .then((json) => {
+      assertUserApiResult(json)
+      return json
+    })
+}
+
 fetchUser(2).then((result) => console.log(result.data.email))
+
+fetchUser2(3).then((result) => console.log(result.data.email))

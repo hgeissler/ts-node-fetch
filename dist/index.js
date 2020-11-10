@@ -68,6 +68,7 @@ function assertUserApiResult(obj) {
         throw new Error('not a valid API result');
     }
 }
+//ASYNC
 function fetchUser(id) {
     return __awaiter(this, void 0, void 0, function () {
         var response, json;
@@ -85,4 +86,14 @@ function fetchUser(id) {
         });
     });
 }
+//PROMISE CHAIN
+function fetchUser2(id) {
+    return node_fetch_1.default("https://reqres.in/api/users/" + id)
+        .then(function (response) { return response.json(); })
+        .then(function (json) {
+        assertUserApiResult(json);
+        return json;
+    });
+}
 fetchUser(2).then(function (result) { return console.log(result.data.email); });
+fetchUser2(3).then(function (result) { return console.log(result.data.email); });
