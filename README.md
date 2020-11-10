@@ -29,6 +29,7 @@ npx tsc --init
 
 `npx tsc --watch`
 
-### Add node-fetch type declarations
+### Add node-fetch + type declarations
 
+`npm add node-fetch`
 `npm install @types/node-fetch`
